@@ -3,37 +3,31 @@
 /**
  * get_precision - Calculates the precision for printing
  * @format: Formatted string in which to print arguments
- * @i: list arguments to be printed
+ * @i: current index in the format string
  * @list: list oaf arguments
  *
  * Return: Precision
  */
 int get_precision(const char *format, int *i, va_list list)
 {
-	int curr_i = *i + 1;
 	int precision = -1;
 
-	if (format[curr_i] != '.')
+	if (format[*i + 1] != '.')
 		return (precision);
 
 	precision = 0;
+	(*i)++;
 
-	for (curr_i += 1; format[curr_i] != '\0'; curr_i++)
+	while (is_digit(format[*i]))
 	{
-		if (is_digit(format[curr_i]))
-		{
-			precision *= 10;
-			precision += format[curr_i] - '0';
-		}
-		else if (format[curr_i] == '*')
-		{
-			curr_i++;
-			precision = va_arg(list, int);
-			break;
-		}
-		else
-			break;
+		precision = precision * 10 + format[*i] - '0';
+		(*i)++;
 	}
-	*i = curr_i - 1;
+
+	if (format[*i] == '*')
+	{
+		(*i)++;
+		precision = va_arg(list, int);
+	}
+
 	return (precision);
-}

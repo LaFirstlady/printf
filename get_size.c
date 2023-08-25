@@ -15,18 +15,18 @@ int get_size(const char *format, int *i)
 
 	switch (format[*i + 1])
 	{
+
 		case 'l':
 			size = S_LONG;
+			(*i)++;
 			break;
 		case 'h':
 			size = S_SHORT;
+			(*i)++;
 			break;
-			default;
+		default:
 			break;
 	}
-
-	if (size != 0)
-		(*i)++;
 
 	return (size);
 }

@@ -61,9 +61,9 @@ long int convert_size_number(long int num, int size)
 		case S_LONG:
 			return (num);
 		case S_SHORT:
-			return (short)num;
+			return ((short)num);
 		default:
-			return (int)num;
+			return ((int)num);
 	}
 }
 
@@ -82,8 +82,8 @@ long int convert_size_unsgnd(unsigned long int num, int size)
 		case S_LONG:
 			return (num);
 		case S_SHORT:
-			return (unsigned short)num;
+			return ((unsigned short)num);
 		default:
-			return (unsigned int)num;
+			return ((unsigned int)num);
 	}
 }
